@@ -58,6 +58,7 @@ void heap_push(Heap* pq, void* data, int priority){
   if (!new) return;
   
   pq->heapArray[pq->size] = *new;
+  free(new);
   int aux = pq->size;
   pq->size++;
 
