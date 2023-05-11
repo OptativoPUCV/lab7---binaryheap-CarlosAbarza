@@ -33,6 +33,19 @@ void heap_pop(Heap* pq){
 }
 
 Heap* createHeap(){
+  Heap *new = (Heap*) malloc(sizeof(Heap));
+  if (!new) {
+    printf("No se pudo crear el heap\n");
+    return NULL;
+  }
 
-   return NULL;
+  new->heapArray = (heapElem*) malloc(3* sizeof(heapElem));
+  if (!new->heapArray) {
+    printf("No se pudo reservar memoria para el heap\n");
+    return NULL;
+  }
+
+  new->size = 0;
+  new->capac = 3;
+  return new;
 }
