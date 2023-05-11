@@ -28,7 +28,7 @@ void* heap_top(Heap* pq){
     return NULL;
   }
   
-  return &pq->heapArray[0];
+  return pq->heapArray[0];
 }
 
 
