@@ -31,10 +31,43 @@ void* heap_top(Heap* pq){
   return pq->heapArray[0].data;
 }
 
+void* crearNode(void* data, int priority) {
+  heapElem *new = (heapElem*) malloc(sizeof(heapElem));
+  if (!new) {
+    printf("No se pudo reservar memoria\n");
+    return NULL;
+  }
+
+  new->data = data;
+  new->priority = priority;
+  return new;
+}
 
 
 void heap_push(Heap* pq, void* data, int priority){
+  if (pq->size == pq->capac) {
+    pq->capac = (pq->capac * 2) + 1;
+    pq->heapArray = (heapElem*) realloc(pq->heapArray, pq->capac*sizeof(heapElem));
+    if (!pq->heapArray) {
+      printf("Error al reservar memoria\n");
+      return;
+    }
+  }
 
+  heapElem *new = crearNode(data, priority);
+  if (!new) return;
+  
+  pq->heapArray[pq->size] = *new;
+  int aux = pq->size;
+  pq->size++;
+
+  while (pq->heapArray[aux].priority > pq->heapArray[(aux-1) / 2].priority) {
+    heapElem temp = pq->heapArray[aux];
+    pq->heapArray[aux] = pq->heapArray[(aux-1)/2];
+    aux = (aux-1) / 2;
+    pq->heapArray[aux] = temp;
+  }
+  return;
 }
 
 
