@@ -84,7 +84,7 @@ void reordenar(Heap *pq) {
     else if (pq->heapArray[aux].priority > pq->heapArray[2*aux + 2].priority)
       return;
 
-    else if (pq->heapArray[(2*aux) + 1].priority > pq->heapArray[(2*aux) + 1].priority) {
+    else if (pq->heapArray[(2*aux) + 1].priority > pq->heapArray[(2*aux) + 2].priority) {
       heapElem temp = pq->heapArray[aux];
       pq->heapArray[aux] = pq->heapArray[2*aux + 1];
       aux = aux*2 + 1;
