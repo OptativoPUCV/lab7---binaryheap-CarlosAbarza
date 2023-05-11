@@ -27,8 +27,9 @@ void* heap_top(Heap* pq){
     printf("La cola esta vacia\n");
     return NULL;
   }
-  
-  return pq->heapArray[0];
+
+  void* aux = &pq->heapArray[0];
+  return aux;
 }
 
 
