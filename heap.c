@@ -78,7 +78,7 @@ void heap_push(Heap* pq, void* data, int priority){
 
 void reordenar(Heap *pq) {
   int aux = 0;
-  while (1) {
+  while (aux*2 + 2 <= pq->size) {
     if (pq->heapArray[aux].priority > pq->heapArray[2*aux + 1].priority) 
       return;
     else if (pq->heapArray[aux].priority > pq->heapArray[2*aux + 2].priority)
