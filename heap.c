@@ -18,7 +18,17 @@ typedef struct Heap{
 
 
 void* heap_top(Heap* pq){
+  if (!pq) {
+    printf("No se ingreso una cola\n");
     return NULL;
+  }
+
+  else if (pq->size == 0) {
+    printf("La cola esta vacia\n");
+    return NULL;
+  }
+  
+  return pq->heapArray[0];
 }
 
 
