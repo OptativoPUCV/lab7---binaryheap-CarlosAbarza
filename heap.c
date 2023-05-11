@@ -76,6 +76,29 @@ void heap_push(Heap* pq, void* data, int priority){
   return;
 }
 
+void reordenar(Heap *pq) {
+  int aux = 0;
+  while (1) {
+    if (pq->heapArray[aux].priority > pq->heapArray[2*aux + 1].priority) 
+      return;
+    else if (pq->heapArray[aux].priority > pq->heapArray[2*aux + 2].priority)
+      return;
+
+    else if (pq->heapArray[2*aux + 1].priority > pq->heapArray[2*aux + 1].priority) {
+      heapElem temp = pq->heapArray[aux];
+      pq->heapArray[aux] = pq->heapArray[2*aux + 1];
+      aux = aux*2 + 1;
+      pq->heapArray[aux] = temp;
+    }
+
+    else {
+      heapElem temp = pq->heapArray[aux];
+      pq->heapArray[aux] = pq->heapArray[2*aux + 2];
+      aux = aux*2 + 2;
+      pq->heapArray[aux] = temp;
+    }
+  }
+}
 
 void heap_pop(Heap* pq){
   if (!pq) {
@@ -88,7 +111,9 @@ void heap_pop(Heap* pq){
     return;
   }
 
-  
+  pq->heapArray[0] = pq->heapArray[pq->size-1];
+  pq->size--;
+  reordenar(pq);
 }
 
 Heap* createHeap(){
