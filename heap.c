@@ -28,8 +28,7 @@ void* heap_top(Heap* pq){
     return NULL;
   }
 
-  void* aux = &pq->heapArray[0];
-  return aux;
+  return pq->heapArray[0].data;
 }
 
 
